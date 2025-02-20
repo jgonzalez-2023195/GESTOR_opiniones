@@ -27,7 +27,20 @@ const userSchema = Schema(
         phone: {
             type: String,
             required: [true, 'phone is required']
+        },
+        role: {
+            type: String,
+            enum: ['ADMIN', 'COMUNITY'],
+            default: 'COMUNITY'
+        },
+        profilePicture: {
+            type: String,
+            default: null
         }
+    },
+    {
+        versionKey: false,
+        timestamps: true
     }
 )
 
