@@ -17,18 +17,6 @@ api.post(
     register
 )
 
-api.post(
-    '/register/admin', 
-    [
-        validateTokenJWT,
-        isAdmin,
-        uploadProfilePicture.single("profilePicture"),
-        registerUserAdmin,
-        deleteFileOnError
-    ],
-    register
-)
-
 api.post('/login', login)
 
 export default api

@@ -1,6 +1,7 @@
 import User from '../src/user/user.model.js'
+import Category from '../src/category/category.model.js'
 import parsePhoneNumber from 'libphonenumber-js'
-import mongoose, { isValidObjectId } from 'mongoose'
+import { isValidObjectId } from 'mongoose'
 
 export const existEmail = async(email, user)=> {
     const alreadyEmail = await User.findOne({email})
@@ -13,9 +14,17 @@ export const existEmail = async(email, user)=> {
 export const existUserName = async(username, user)=> {
     const alreadyUserName = await User.findOne({username})
     if(alreadyUserName && alreadyUserName._id != user.uid){
-        console.error(`Email ${email} is already taken`);
-        throw new Error(`Email ${email} is already taken`)
+        console.error(`User name ${username} is already taken`);
+        throw new Error(`User name ${username} is already taken`)
     }
+}
+
+export const existNameCat = async(name, category)=> {
+    const alreadyName = await Category.findOne({name})
+        if(alreadyName && alreadyName._id != category._id){
+            console.error(`Name ${name} is already taken`);
+            throw new Error(`Name ${name} is already taken`)
+        }
 }
 
 export const objectIdValid = async(objectId)=> {

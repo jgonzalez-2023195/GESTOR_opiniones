@@ -1,6 +1,6 @@
 import { body } from 'express-validator'
 import { validateErrors } from './validate.errors.js'
-import { comonPasswords, existEmail, existUserName, formatPhoneNumber } from '../utils/db.validator.js'
+import { comonPasswords, existEmail, existNameCat, existUserName, formatPhoneNumber, objectIdValid } from '../utils/db.validator.js'
 
 export const registerUser = [
     body('name', 'Name cannot be empty')
@@ -74,4 +74,39 @@ export const registerUserAdmin = [
         .optional()
         .isIn(['ADMIN', 'COMUNITY']).withMessage(`Role must be 'ADMIN' or 'COMUNITY'`),
     validateErrors
+]
+
+export const registerCategory = [
+    body('name', 'Name cannot be empty')
+        .notEmpty()
+        .isLength({max: 20}).withMessage(`Can't be more than 20 characters`)
+        .custom(existNameCat),
+    body('description', 'Description cannot be empty')
+        .notEmpty()
+        .isLength({max: 50}).withMessage(`Can't be more than 50 characters`),
+    body('parentCategory')
+        .optional()
+        .custom(objectIdValid),
+    validateErrors
+]
+
+export const updateCategory = [
+    body('name', 'Name cannot be empty')    
+        .optional()
+        .notEmpty()
+        .isLength({max: 20}).withMessage(`Can't be more than 20 characters`),
+    body('description', 'Description cannot be empty')
+        .optional()
+        .notEmpty()
+        .isLength({max: 50}).withMessage(`Can't be more than 50 characters`),
+    body('categoryPicture')
+        .optional(),
+    body('parentCategory')
+        .optional()
+        .custom(objectIdValid),
+    validateErrors
+]   
+
+export const newPublication = [
+    
 ]

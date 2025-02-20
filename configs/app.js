@@ -3,8 +3,9 @@
 import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
-import authRoutes from '../src/auth/auth.routes.js'
 import morgan from 'morgan'
+import authRoutes from '../src/auth/auth.routes.js'
+import catRoutes from '../src/category/category.routes.js'
 
 const configs =(app)=> {
     app.use(express.json())
@@ -16,6 +17,7 @@ const configs =(app)=> {
 
 const routes = (app)=> {
     app.use('/v1/gestoropinioes', authRoutes)
+    app.use('/v1/gestoropinioes/category', catRoutes)
 }
 
 export const initServer = ()=> {
