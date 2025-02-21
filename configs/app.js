@@ -6,6 +6,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import authRoutes from '../src/auth/auth.routes.js'
 import catRoutes from '../src/category/category.routes.js'
+import publicationRoutes from '../src/publication/publication.routes.js'
 
 const configs =(app)=> {
     app.use(express.json())
@@ -16,8 +17,9 @@ const configs =(app)=> {
 }
 
 const routes = (app)=> {
-    app.use('/v1/gestoropinioes', authRoutes)
-    app.use('/v1/gestoropinioes/category', catRoutes)
+    app.use('/v1/gestoropiniones', authRoutes)
+    app.use('/v1/gestoropiniones/category', catRoutes)
+    app.use('/v1/gestoropiniones/publication', publicationRoutes)
 }
 
 export const initServer = ()=> {

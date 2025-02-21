@@ -36,7 +36,7 @@ export const listCat = async(req, res)=> {
         if(!category.lenth === 0) return res.status(404).send({message: 'Cateographies not found'})
             return res.status(200).send({message: 'Categories found: ', category})
     } catch (e) {
-        console.error(e);
+        console.error(e)
         return res.status(500).send(
             {
                 success: false,

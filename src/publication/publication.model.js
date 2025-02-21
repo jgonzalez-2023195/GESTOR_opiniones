@@ -4,11 +4,13 @@ const publicationSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, 'Title is required']
+            required: [true, 'Title is required'],
+            default: ' '
         },
         text: {
             type: String,
-            required: [true, 'Text is required']
+            required: [true, 'Text is required'],
+            default: ' '
         },
         mediaPicture: {
             type: String,
@@ -36,7 +38,11 @@ const publicationSchema = new Schema(
         },
         hashtags: [{
             type: String
-        }]
+        }],
+        mentions: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
     },
     {
         versionKey: false,

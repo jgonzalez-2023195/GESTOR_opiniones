@@ -1,12 +1,34 @@
 import { Router } from "express"
-import {  } from './publication.controller.js'
-import {  } from '../../middlewares/validator.js'
+import { addPublication, listPublications, myPublications } from './publication.controller.js'
+import { newPublication } from '../../middlewares/validator.js'
 import { deleteFileOnError } from '../../middlewares/delete.file.errors.js'
 import { validateTokenJWT } from '../../middlewares/validate.token.jwt.js'
-import { uploadCateogryPicture } from '../../middlewares/multer.uploads.js'
+import { uploadPublicationMedia } from '../../middlewares/multer.uploads.js'
 
 const api = Router()
 
+api.post(
+    '/new',
+    [
+        validateTokenJWT,
+        uploadPublicationMedia.single('mediaPicture'),
+        newPublication,
+        deleteFileOnError
+    ],
+    addPublication
+)
 
+api.get(
+    '/list',
+    listPublications
+)
 
-export default api
+api.get(
+    '/list/myPubolications',
+    [
+        validateTokenJWT
+    ],
+    myPublications
+)
+
+export default api 
