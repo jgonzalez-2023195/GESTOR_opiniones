@@ -4,8 +4,7 @@ const commentSchema = new Schema(
     {
         text: {
             type: String,
-            required: [true, 'Comment text is required'],
-            trim: true
+            required: [true, 'Comment text is required']
         },
         user: {
             type: Schema.Types.ObjectId,
@@ -22,14 +21,15 @@ const commentSchema = new Schema(
             ref: 'Comment',
             default: null
         },
-        likes: {
-            type: Number,
-            default: 0
+        reactions: {
+            type: String,
+            enum: ['👍','❤️','😂','😢','😮'],
+            default: null
         },
         visibility: {
             type: String,
-            enum: ['public', 'private'],
-            default: 'public'
+            enum: ['PUBLIC', 'PRIVATE'],
+            default: 'PUBLIC'
         },
         mentions: [{
             type: Schema.Types.ObjectId,
@@ -41,7 +41,7 @@ const commentSchema = new Schema(
         }
     },
     {
-        versionKey: false,
+        versionKey: false,//validacion de mongo para cambiar si se elimina una category
         timestamps: true
     }
 );

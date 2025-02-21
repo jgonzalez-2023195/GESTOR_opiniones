@@ -132,6 +132,7 @@ export const newPublication = [
         .optional(),
     validateErrors
 ]
+
 export const updatPublication = [
     body('title', 'Title cannot be empty')
         .optional()
@@ -156,4 +157,24 @@ export const updatPublication = [
     body('mentions')
         .optional(),
     validateErrors
+]
+
+export const newComment = [
+    body('text', 'Text cannot be empty')
+        .notEmpty(),
+    body('publication', 'ObjectId publication cannot be empty')
+        .notEmpty()
+        .custom(objectIdValid),
+    body('parentComment', 'ObjectId parent comment cannot be empty')
+        .optional()
+        .custom(objectIdValid),
+    body('reactions')
+        .optional()
+        .isIn(['👍','❤️','😂','😢','😮']).withMessage(`Reaction must be '👍' or '❤️' or '😂' or '😢' or '😮'`),
+    body('visibility')
+        .optional()
+        .isIn(['PUBLIC', 'PRIVATE']).withMessage(`Visibiliti must be 'PUBLIC' or 'PRIVATE'`),
+    body('mentions')
+        .optional()
+        .custom(objectIdValid)
 ]

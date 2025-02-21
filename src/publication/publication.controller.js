@@ -224,7 +224,7 @@ export const deletePublication = async(req, res)=> {
         if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
             {
                 success: false,
-                message: 'Unauthorized update publication'
+                message: 'Unauthorized deleted publication'
             }
         )
         let deletePublication = await Publication.findByIdAndDelete(id)
