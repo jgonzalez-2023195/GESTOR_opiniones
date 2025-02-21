@@ -26,9 +26,10 @@ const publicationSchema = new Schema(
             ref: 'Category',
             required: [true, 'Category is required']
         },
-        likes: {
-            type: Number,
-            default: 0
+        reactions: {
+            type: String,
+            enum: ['👍','❤️','😂','😢','😮'],
+            default: null
         },
         visibility: {
             type: String,

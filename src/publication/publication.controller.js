@@ -42,6 +42,10 @@ export const listPublications = async(req, res)=> {
                 {
                     path: 'category',
                     select: 'name -_id'
+                },
+                {
+                    path: 'mentions',
+                    select: 'name surname username -_id'
                 }
             ]
         )
@@ -133,33 +137,118 @@ export const myPublications = async(req, res)=> {
     }
 }
 
-export const updatePublications = async(req, res)=> {
+export const updatePublication = async(req, res)=> {
     const data = req.body
     try {
         let id = req.params.id
-        let user = await User.findOne(
-            {
-                _id: req.user.uid
-            }
-        )
+        const { filename } = req.file
         let publication = await Publication.findById(id)
-        if(publication.userPublication.toString()!== user)return res.status(403).send(
+        if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
             {
                 success: false,
                 message: 'Unauthorized update publication'
             }
         )
-        
+        if(filename){
+            data.mediaPicture = filename
+        }
         const updatePublication = await Publication.findByIdAndUpdate(id, data, {new: true})
-        if(!updatePublication) return res.status(404).send({message: 'Publication not updated'})
-            return res.status(500).send(
-                {
-                    success: true,
-                    message: 'Updated publication',
-                    updatePublication 
-                }
-            )
+        if(!updatePublication) return res.status(404).send(
+            {
+                message: 'Publication not updated'
+            }
+        )
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Updated publication',
+                updatePublication 
+            }
+        )
     } catch (e) {
+        console.error(e);
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when updated publications',
+                e
+            }
+        )
+    }
+}
 
+/* export const reaction = async(req, res)=> {
+    const data = req.body
+    try {
+        let id = req.params.id
+        const { filename } = req.file
+        let publication = await Publication.findById(id)
+        if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
+            {
+                success: false,
+                message: 'Unauthorized update publication'
+            }
+        )
+        if(filename){
+            data.mediaPicture = filename
+        }
+        const updatePublication = await Publication.findByIdAndUpdate(id, data, {new: true})
+        if(!updatePublication) return res.status(404).send(
+            {
+                message: 'Publication not updated'
+            }
+        )
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Updated publication',
+                updatePublication 
+            }
+        )
+    } catch (e) {
+        console.error(e);
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when reaction publications',
+                e
+            }
+        )
+    }
+} */
+
+export const deletePublication = async(req, res)=> {
+    try {
+        let id = req.params.id
+        let publication = await Publication.findById(id)
+        if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
+            {
+                success: false,
+                message: 'Unauthorized update publication'
+            }
+        )
+        let deletePublication = await Publication.findByIdAndDelete(id)
+        if(!deletePublication) return res.status(404).send(
+            {
+                success: false,
+                message: 'Publication not found, publication not delete',
+                deletePublication
+            }
+        )
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Publication deleted on system'
+            }
+        )
+    } catch (e) {
+        console.error(e);
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when deleted publications',
+                e
+            }
+        )
     }
 }

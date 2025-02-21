@@ -122,6 +122,34 @@ export const newPublication = [
         .optional()
         .notEmpty()
         .custom(objectIdValid),
+    body('reactions')
+        .optional()
+        .isIn(['👍','❤️','😂','😢','😮']).withMessage(`Reaction must be '👍' or '❤️' or '😂' or '😢' or '😮'`),
+    body('visibility', 'Visibility cannot be empty')
+        .optional()
+        .notEmpty(),
+    body('mentions')
+        .optional(),
+    validateErrors
+]
+export const updatPublication = [
+    body('title', 'Title cannot be empty')
+        .optional()
+        .notEmpty()
+        .isLength({min: 1}).withMessage('The title must be at last 1 character long'),
+    body('text', 'Text cannot be empty')
+        .optional()
+        .notEmpty(),
+    body('userPublication', 'User publication cannot be empty')
+        .optional()
+        .notEmpty(),
+    body('category', 'Category cannot be empty')
+        .optional()
+        .notEmpty()
+        .custom(objectIdValid),
+    body('reactions')
+        .optional()
+        .isIn(['👍','❤️','😂','😢','😮']).withMessage(`Reaction must be '👍' or '❤️' or '😂' or '😢' or '😮'`),
     body('visibility', 'Visibility cannot be empty')
         .optional()
         .notEmpty(),

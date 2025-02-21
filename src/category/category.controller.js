@@ -9,7 +9,8 @@ export const newCat = async(req, res)=> {
         return res.status(200).send(
             {
                 success: true,
-                message: 'Category successfully added to the system'
+                message: 'Category successfully added to the system',
+                category
             }
         )
     } catch (e) {

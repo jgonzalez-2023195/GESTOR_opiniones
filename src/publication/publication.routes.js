@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { addPublication, listPublications, myPublications } from './publication.controller.js'
-import { newPublication } from '../../middlewares/validator.js'
+import { addPublication, deletePublication, listPublications, myPublications, updatePublication } from './publication.controller.js'
+import { newPublication, updatPublication } from '../../middlewares/validator.js'
 import { deleteFileOnError } from '../../middlewares/delete.file.errors.js'
 import { validateTokenJWT } from '../../middlewares/validate.token.jwt.js'
 import { uploadPublicationMedia } from '../../middlewares/multer.uploads.js'
@@ -29,6 +29,25 @@ api.get(
         validateTokenJWT
     ],
     myPublications
+)
+
+api.put(
+    '/update/:id',
+    [
+        validateTokenJWT,
+        uploadPublicationMedia.single('mediaPicture'),
+        updatPublication,
+        deleteFileOnError
+    ],
+    updatePublication
+)
+
+api.delete(
+    '/deleted/:id',
+    [
+        validateTokenJWT,
+    ],
+    deletePublication
 )
 
 export default api 
