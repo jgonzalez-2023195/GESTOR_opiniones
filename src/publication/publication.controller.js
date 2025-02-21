@@ -142,7 +142,24 @@ export const updatePublications = async(req, res)=> {
                 _id: req.user.uid
             }
         )
-    } catch (e) {
+        let publication = await Publication.findById(id)
+        if(publication.userPublication.toString()!== user)return res.status(403).send(
+            {
+                success: false,
+                message: 'Unauthorized update publication'
+            }
+        )
         
+        const updatePublication = await Publication.findByIdAndUpdate(id, data, {new: true})
+        if(!updatePublication) return res.status(404).send({message: 'Publication not updated'})
+            return res.status(500).send(
+                {
+                    success: true,
+                    message: 'Updated publication',
+                    updatePublication 
+                }
+            )
+    } catch (e) {
+
     }
 }
