@@ -7,6 +7,8 @@ import morgan from 'morgan'
 import authRoutes from '../src/auth/auth.routes.js'
 import catRoutes from '../src/category/category.routes.js'
 import publicationRoutes from '../src/publication/publication.routes.js'
+import commentRoutes from '../src/comment/comment.routes.js'
+import settings from '../src/user/user.routes.js'
 
 const configs =(app)=> {
     app.use(express.json())
@@ -18,8 +20,10 @@ const configs =(app)=> {
 
 const routes = (app)=> {
     app.use('/v1/gestoropiniones', authRoutes)
+    app.use('/v1/gestoropiniones/settings', settings)
     app.use('/v1/gestoropiniones/category', catRoutes)
     app.use('/v1/gestoropiniones/publication', publicationRoutes)
+    app.use('/v1/gestoropiniones/comment', commentRoutes)
 }
 
 export const initServer = ()=> {

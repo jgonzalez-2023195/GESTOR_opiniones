@@ -34,14 +34,10 @@ const commentSchema = new Schema(
         mentions: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }],
-        isEdited: {
-            type: Boolean,
-            default: false
-        }
+        }]
     },
     {
-        versionKey: false,//validacion de mongo para cambiar si se elimina una category
+        versionKey: false,
         timestamps: true
     }
 );

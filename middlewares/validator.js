@@ -39,22 +39,25 @@ export const registerUser = [
     validateErrors
 ]
 
-export const registerUserAdmin = [
+export const updateUser = [
     body('name', 'Name cannot be empty')
+        .optional()
         .notEmpty()
         .isLength({max: 30}).withMessage(`Can't be more than 30 characters`),
     body('surname', 'Surname cannot be empty')
+        .optional()
         .notEmpty()
         .isLength({max: 30}).withMessage(`Can't be more than 30 characters`),        
     body('username', 'Username cannot be empty')
+        .optional()
         .notEmpty()
-        .isLength({min: 4, max: 10}).withMessage(`Username must be between 4 and 10 characters`)
-        .custom(existUserName),
+        .isLength({min: 4, max: 10}).withMessage(`Username must be between 4 and 10 characters`),
     body('email', 'Email cannot be empty')
+        .optional()
         .notEmpty()
-        .isEmail().withMessage(`Enter a valid email`)
-        .custom(existEmail),
+        .isEmail().withMessage(`Enter a valid email`),
     body('password', 'Password cannot be empty')
+        .optional()
         .notEmpty()
         .isStrongPassword(
             {
@@ -68,11 +71,12 @@ export const registerUserAdmin = [
         .isLength({ min: 8 }).withMessage(`The password must be at least 8 characters long`)
     .custom(comonPasswords),
         body('phone', 'Mobile phone cannot be empty')
+            .optional()
         .notEmpty()
         .custom(formatPhoneNumber),
     body('role')
         .optional()
-        .isIn(['ADMIN', 'COMUNITY']).withMessage(`Role must be 'ADMIN' or 'COMUNITY'`),
+        .isIn(['COMUNITY']).withMessage(`Role must be 'COMUNITY'`),
     validateErrors
 ]
 
@@ -163,6 +167,28 @@ export const newComment = [
     body('text', 'Text cannot be empty')
         .notEmpty(),
     body('publication', 'ObjectId publication cannot be empty')
+        .notEmpty()
+        .custom(objectIdValid),
+    body('parentComment', 'ObjectId parent comment cannot be empty')
+        .optional()
+        .custom(objectIdValid),
+    body('reactions')
+        .optional()
+        .isIn(['👍','❤️','😂','😢','😮']).withMessage(`Reaction must be '👍' or '❤️' or '😂' or '😢' or '😮'`),
+    body('visibility')
+        .optional()
+        .isIn(['PUBLIC', 'PRIVATE']).withMessage(`Visibiliti must be 'PUBLIC' or 'PRIVATE'`),
+    body('mentions')
+        .optional()
+        .custom(objectIdValid)
+]
+
+export const updateComment = [
+    body('text', 'Text cannot be empty')
+        .optional()
+        .notEmpty(),
+    body('publication', 'ObjectId publication cannot be empty')
+        .optional()
         .notEmpty()
         .custom(objectIdValid),
     body('parentComment', 'ObjectId parent comment cannot be empty')

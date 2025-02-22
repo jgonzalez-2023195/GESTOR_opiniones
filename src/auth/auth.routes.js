@@ -1,9 +1,8 @@
 import { Router } from "express"
 import { login, register } from './auth.controller.js'
 import { uploadProfilePicture } from '../../middlewares/multer.uploads.js'
-import { registerUser, registerUserAdmin } from '../../middlewares/validator.js'
+import { registerUser } from '../../middlewares/validator.js'
 import { deleteFileOnError } from '../../middlewares/delete.file.errors.js'
-import { isAdmin, validateTokenJWT } from "../../middlewares/validate.token.jwt.js"
 
 const api = Router()
 
