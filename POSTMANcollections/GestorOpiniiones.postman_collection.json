@@ -1,0 +1,937 @@
+{
+	"info": {
+		"_postman_id": "85774929-10b2-4ec3-973d-cb765d71722b",
+		"name": "GestorOpiniiones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956953"
+	},
+	"item": [
+		{
+			"name": "ADMIN ACTIONS",
+			"item": [
+				{
+					"name": "NewCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Deporte",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Categoría encargada del manejo de Deporte",
+									"type": "text"
+								},
+								{
+									"key": "categoryPicture",
+									"type": "file",
+									"src": "postman-cloud:///1efefc8b-b783-4650-8175-7d1df9daddc7"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/category/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"category",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewSUBCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Automovilismo",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Categoría encargada del manejo del mundo automotor",
+									"type": "text"
+								},
+								{
+									"key": "categoryPicture",
+									"type": "file",
+									"src": "postman-cloud:///1efefcb4-9ac1-4a70-9e9d-2798e4268d11"
+								},
+								{
+									"key": "parentCategory",
+									"value": "67b7ec74cfa65435f1fb6d26",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/category/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"category",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewSUBsubCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "F1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Categoría encargada del manejo del mundo de la F1",
+									"type": "text"
+								},
+								{
+									"key": "categoryPicture",
+									"type": "file",
+									"src": "postman-cloud:///1efefffd-bb3d-4730-ae7f-8db09b4b13d3"
+								},
+								{
+									"key": "parentCategory",
+									"value": "67baa6f083cd50827e0d9fc9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/category/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"category",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Motociclismo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Categoía encargada del deporte de motociclismo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "categoryPicture",
+									"type": "file",
+									"src": "postman-cloud:///1eff1ac5-0955-4e90-babf-a7b58d2aa9f0"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/category/update/67b9610b5da2dbdd4badf557",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"category",
+								"update",
+								"67b9610b5da2dbdd4badf557"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/category/deleted/67baa70a83cd50827e0d9fcc",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"category",
+								"deleted",
+								"67baa70a83cd50827e0d9fcc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserACTIONS",
+			"item": [
+				{
+					"name": "NewPublication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tendencia",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": "Las vistas no pueden ser mejores 😮‍💨",
+									"type": "text"
+								},
+								{
+									"key": "mediaPicture",
+									"type": "file",
+									"src": "/C:/Users/Informatica/Desktop/GESTOR_opiniones/uploads/publication/SF-25.mp4"
+								},
+								{
+									"key": "category",
+									"value": "67b8e2e256d955d0e2530f3d",
+									"type": "text"
+								},
+								{
+									"key": "hashtags",
+									"value": "F1",
+									"type": "text"
+								},
+								{
+									"key": "hashtags",
+									"value": "Scuderia Ferrari",
+									"type": "text"
+								},
+								{
+									"key": "hashtags",
+									"value": "SF-25",
+									"type": "text"
+								},
+								{
+									"key": "hashtags",
+									"value": "CL 16",
+									"type": "text"
+								},
+								{
+									"key": "mentions",
+									"value": "67b7947c8274e7660ab94871",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/publication/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"publication",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Meme",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mediaPicture",
+									"type": "file",
+									"src": "/C:/Users/jgonz/Downloads/ChatGPT_Meme_IG.mp4"
+								},
+								{
+									"key": "category",
+									"value": "67b9610b5da2dbdd4badf557",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Meme",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "meme",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/publication/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"publication",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePublication",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tendencia",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "text",
+									"value": " ",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "mediaPicture",
+									"type": "file",
+									"src": "/C:/Users/jgonz/Downloads/MeMe.mp4"
+								},
+								{
+									"key": "category",
+									"value": "67baa70a83cd50827e0d9fcc",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "hashtags",
+									"value": "Meme",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "hashtags",
+									"value": "Scuderia Ferrari",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "hashtags",
+									"value": "SF-25",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "hashtags",
+									"value": "CL 16",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "mentions",
+									"value": "67b7947c8274e7660ab94871",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/publication/update/67b9613c5da2dbdd4badf55e",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"publication",
+								"update",
+								"67b9613c5da2dbdd4badf55e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MyPublications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/publication/list/myPubolications?limit=2&skip=0",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"publication",
+								"list",
+								"myPubolications"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePublication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/publication/deleted/67b9614d5da2dbdd4badf561",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"publication",
+								"deleted",
+								"67b9614d5da2dbdd4badf561"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "🤣",
+									"type": "text"
+								},
+								{
+									"key": "publication",
+									"value": "67b9614d5da2dbdd4badf561",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/comment/new",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"comment",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateComment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "Y la mentira?",
+									"type": "text"
+								},
+								{
+									"key": "mentions",
+									"value": "67b6be4bf01674021ecdb5ed",
+									"type": "text"
+								},
+								{
+									"key": "mentions",
+									"value": "67b5623b7208946ac0329398",
+									"type": "text"
+								},
+								{
+									"key": "mentions",
+									"value": "67b6bdf7f01674021ecdb5e7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/comment/updated/67b961705da2dbdd4badf568",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"comment",
+								"updated",
+								"67b961705da2dbdd4badf568"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:4003/v1/gestoropiniones/comment/deleted/67b95b64e043384a8a3b6a1d",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"v1",
+								"gestoropiniones",
+								"comment",
+								"deleted",
+								"67b95b64e043384a8a3b6a1d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ListCategory",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/category/list?limit=4&skip=0",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"category",
+						"list"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "4"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewPublications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/publication/list?limit=4&skip=0",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"publication",
+						"list"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "4"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "José",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "González",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Chepee",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jgonzalez.242720@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "MyPassSecurit&25",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+502 4137-9293",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "ADMIN",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "profilePicture",
+							"type": "file",
+							"src": "postman-cloud:///1efefcbb-d41f-4270-9b72-05398edff510"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", data.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userLogin",
+							"value": "chepeto",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "userLogin",
+							"value": "jgonzalez-2023195@kinal.edu.gt",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "MyAdminAce$25",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "F1FavoriteDeport2025&",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewComment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/comment/list/?limit=3&skip=0",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"comment",
+						"list",
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "AdminSy",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "profilePicture",
+							"type": "file",
+							"src": "postman-cloud:///1efefcbb-d41f-4270-9b72-05398edff510"
+						},
+						{
+							"key": "oldPassword",
+							"value": "MyAdminAce$25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "newPassword",
+							"value": "MyAdminAce$25",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4003/v1/gestoropiniones/settings/update/profile/67b6bacdfc06dd3a397c810c",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"v1",
+						"gestoropiniones",
+						"settings",
+						"update",
+						"profile",
+						"67b6bacdfc06dd3a397c810c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

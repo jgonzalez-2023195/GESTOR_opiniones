@@ -1,5 +1,6 @@
 import Publication from './publication.model.js'
 import User from '../user/user.model.js'
+import Comment from '../comment/comment.model.js'
 
 export const addPublication = async(req, res)=> {
     try {
@@ -86,11 +87,11 @@ export const myPublications = async(req, res)=> {
     const {limit, skip} = req.query
     try {
 
-        let user = await User.findOne(
+        /* let user = await User.findOne(
             {
                 _id: req.user.uid
             }
-        )
+        ) */
 
         let publications = await Publication.find({ userPublication: req.user.uid }).limit(limit).skip(skip).populate(
             [
@@ -141,7 +142,7 @@ export const updatePublication = async(req, res)=> {
     const data = req.body
     try {
         let id = req.params.id
-        const { filename } = req.file
+        const filename = req.file?.filename??null
         let publication = await Publication.findById(id)
         if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
             {
@@ -177,46 +178,6 @@ export const updatePublication = async(req, res)=> {
     }
 }
 
-/* export const reaction = async(req, res)=> {
-    const data = req.body
-    try {
-        let id = req.params.id
-        const { filename } = req.file
-        let publication = await Publication.findById(id)
-        if(publication.userPublication.toString()!== req.user.uid)return res.status(403).send(
-            {
-                success: false,
-                message: 'Unauthorized update publication'
-            }
-        )
-        if(filename){
-            data.mediaPicture = filename
-        }
-        const updatePublication = await Publication.findByIdAndUpdate(id, data, {new: true})
-        if(!updatePublication) return res.status(404).send(
-            {
-                message: 'Publication not updated'
-            }
-        )
-        return res.status(200).send(
-            {
-                success: true,
-                message: 'Updated publication',
-                updatePublication 
-            }
-        )
-    } catch (e) {
-        console.error(e);
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error when reaction publications',
-                e
-            }
-        )
-    }
-} */
-
 export const deletePublication = async(req, res)=> {
     try {
         let id = req.params.id
@@ -227,6 +188,7 @@ export const deletePublication = async(req, res)=> {
                 message: 'Unauthorized deleted publication'
             }
         )
+        await Comment.deleteMany({publication: id})
         let deletePublication = await Publication.findByIdAndDelete(id)
         if(!deletePublication) return res.status(404).send(
             {

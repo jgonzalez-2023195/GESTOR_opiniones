@@ -56,20 +56,7 @@ export const updateUser = [
         .optional()
         .notEmpty()
         .isEmail().withMessage(`Enter a valid email`),
-    body('password', 'Password cannot be empty')
-        .optional()
-        .notEmpty()
-        .isStrongPassword(
-            {
-                minLength: 8,
-                minLowercase: 1,
-                minNumbers: 1,
-                minSymbols: 1,
-                minUppercase: 1
-            }
-        )
-        .isLength({ min: 8 }).withMessage(`The password must be at least 8 characters long`)
-    .custom(comonPasswords),
+    
         body('phone', 'Mobile phone cannot be empty')
             .optional()
         .notEmpty()
@@ -77,6 +64,8 @@ export const updateUser = [
     body('role')
         .optional()
         .isIn(['COMUNITY']).withMessage(`Role must be 'COMUNITY'`),
+    body('profilePicture')
+        .optional(),
     validateErrors
 ]
 

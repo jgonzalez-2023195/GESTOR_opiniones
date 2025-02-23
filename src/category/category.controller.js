@@ -1,4 +1,5 @@
 import Category from './category.model.js'
+import Publication from '../publication/publication.model.js'
 
 export const newCat = async(req, res)=> {
     const data = req.body
@@ -52,7 +53,7 @@ export const updateCat = async(req, res)=> {
     try {
         let id = req.params.id
         let data = req.body
-        const { filename } = req.file
+        const filename = req.file?.filename??null
 
         if (filename) {
             data.categoryPicture = filename;
@@ -87,6 +88,22 @@ export const updateCat = async(req, res)=> {
 export const deleteCat = async(req, res)=> {
     try {
         let id = req.params.id
+
+        let categoryToDelete = await Category.findById(id)
+        let parentCategory = categoryToDelete.parentCategory
+        if (!parentCategory) {
+            return res.status(400).send({ message: 'The category has no parent category to assign to publications' })
+        }
+
+        let updatePublication = await Publication.find({ category: id })
+
+        if (updatePublication.length > 0) {
+            await Publication.updateMany(
+                { category: id },
+                { $set: { category: parentCategory } }
+            )
+        }
+
         let category = await Category.findByIdAndDelete(id)
         if(!category) return res.status(404).send(
             {
